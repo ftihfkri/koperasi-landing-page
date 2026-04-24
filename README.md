@@ -236,3 +236,4 @@ Place the following images in `public/images/`:
 - Icon fields in config use string names (e.g. "Wine", "MapPin") that are resolved via icon lookup maps in each component
 - The contact form and newsletter use Formspree endpoints - replace with your own form IDs
 - Images should be optimized for web (JPG for photos, PNG for transparent images)
+"# koperasi-landing-page" 
