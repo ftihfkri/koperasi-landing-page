@@ -377,8 +377,6 @@ export interface AboutConfig {
   introText: string;
   timeline: TimelineEvent[];
   tabs: AboutTab[];
-  yearBadge?: string;
-  yearBadgeLabel?: string;
   openingHours: string;
   openingHoursLabel: string;
   ctaButtonText: string;
@@ -434,8 +432,6 @@ export const museumConfig: AboutConfig = {
       },
     },
   ],
-  yearBadge: "2012",
-  yearBadgeLabel: "Est.",
   openingHours: "Office: Monday - Friday, 8:00 AM - 4:00 PM",
   openingHoursLabel: "Operating Hours",
   ctaButtonText: "Download Annual Report",
