@@ -33,6 +33,7 @@ export function Museum() {
   }, []);
 
   const activeTabData = museumConfig.tabs.find(tab => tab.id === activeTab);
+  const yearBadge = museumConfig.timeline[0]?.year;
 
   return (
     <section
@@ -184,11 +185,11 @@ export function Museum() {
               ))}
 
               {/* Year Badge */}
-              {museumConfig.yearBadge && (
+              {yearBadge && (
                 <div className="absolute top-6 right-6 w-24 h-24 rounded-full bg-black/40 backdrop-blur-sm border border-gold-500/40 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="font-serif text-2xl text-gold-400">{museumConfig.yearBadge}</div>
-                    <div className="text-[10px] text-white/70 uppercase tracking-wider">{museumConfig.yearBadgeLabel}</div>
+                    <div className="font-serif text-2xl text-gold-400">{yearBadge}</div>
+                    <div className="text-[10px] text-white/70 uppercase tracking-wider">Since</div>
                   </div>
                 </div>
               )}
