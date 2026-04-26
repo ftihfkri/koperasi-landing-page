@@ -183,15 +183,6 @@ export function Museum() {
                 </div>
               ))}
 
-              {/* Year Badge */}
-              {museumConfig.yearBadge && (
-                <div className="absolute top-6 right-6 w-24 h-24 rounded-full bg-black/40 backdrop-blur-sm border border-gold-500/40 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="font-serif text-2xl text-gold-400">{museumConfig.yearBadge}</div>
-                    <div className="text-[10px] text-white/70 uppercase tracking-wider">{museumConfig.yearBadgeLabel}</div>
-                  </div>
-                </div>
-              )}
 
               {/* Bottom Info */}
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">

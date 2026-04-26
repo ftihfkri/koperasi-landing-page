@@ -1,6 +1,6 @@
 // app/src/pages/investor/InvestorDashboard.tsx
 
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   ResponsiveContainer,
   LineChart,
