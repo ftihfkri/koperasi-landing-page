@@ -602,7 +602,7 @@ export const contactFormConfig: ContactFormConfig = {
     {
       icon: "Phone",
       label: "Phone",
-      value: "6010-9621558",
+      value: "010-9621558",
       subtext: "Office hours only",
     },
     {
@@ -712,7 +712,7 @@ export const footerConfig: FooterConfig = {
   ],
   contactItems: [
     { icon: "MapPin", text: "KM 44, Jalan Tawau - Kalabakan, P.O.Box 60966, 91019 Tawau, Sabah, Malaysia." },
-    { icon: "Phone", text: "+60 88-XXX XXXX" },
+    { icon: "Phone", text: "010-9621558" },
     { icon: "Mail", text: "koperasi@kop-ssb.com" },
   ],
   newsletterLabel: "Subscribe to updates",
