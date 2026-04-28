@@ -356,7 +356,7 @@ export function BoardMembersPage() {
                 <span>Email the Board</span>
               </a>
               <a
-                href="tel:+6088XXXXXX"
+                href="tel:+60109621558"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-6 py-3 rounded hover:bg-white/20 transition-colors"
               >
                 <Phone className="w-5 h-5" />

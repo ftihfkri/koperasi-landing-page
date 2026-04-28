@@ -1,5 +1,3 @@
-import InvestorCompare from "./pages/investor/InvestorCompare";
-import InvestorDashboard from "./pages/investor/InvestorDashboard";
 import { useState, useCallback } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navigation } from "./sections/Navigation";
@@ -81,24 +79,6 @@ function AppContent() {
             element={
               <PageWrapper>
                 <BoardMembersPage />
-              </PageWrapper>
-            }
-          />
-
-          <Route
-            path="/investor"
-            element={
-              <PageWrapper>
-                <InvestorDashboard />
-              </PageWrapper>
-            }
-          />
-
-          <Route
-            path="/investor/compare"
-            element={
-              <PageWrapper>
-                <InvestorCompare />
               </PageWrapper>
             }
           />

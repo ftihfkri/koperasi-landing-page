@@ -69,7 +69,7 @@ export const navigationConfig: NavigationConfig = {
       ],
     },
     {
-      name: "Investments",
+      name: "Business Portfolio",
       href: "#investments",
       icon: "TreePine",
     },
@@ -182,7 +182,7 @@ export interface WineShowcaseConfig {
 
 export const wineShowcaseConfig: WineShowcaseConfig = {
   scriptText: "Our Portfolio",
-  subtitle: "DIVERSIFIED INVESTMENT STRATEGY",
+  subtitle: "DIVERSIFIED BUSINESS INVESTMENT STRATEGY",
   mainTitle: "Portfolio Ventures",
   wines: [
     {
@@ -302,7 +302,7 @@ export interface MemberBenefitsConfig {
 }
 
 export const wineryCarouselConfig: MemberBenefitsConfig = {
-  scriptText: "Member Benefits",
+  scriptText: "Member Privileges : Unlock More Value Within",
   subtitle: "WHAT MEMBERS ENJOY",
   mainTitle: "Benefits of Membership",
   locationTag: "For All Active Members",
@@ -404,7 +404,7 @@ export const museumConfig: AboutConfig = {
       icon: "History",
       image: "/images/governance.jpg",
       content: {
-        title: "Democratic Management",
+        title: "Governance",
         description: "Our cooperative is governed by an elected Board of Directors, all of whom are employees of Sabah Softwoods Berhad. Major decisions are made at Annual General Meetings where every member has a vote. We operate under the Cooperative Societies Act of Malaysia with full regulatory compliance.",
         highlight: "Member-owned, member-governed",
       },
@@ -413,7 +413,7 @@ export const museumConfig: AboutConfig = {
       id: "board",
       name: "Board Members",
       icon: "BookOpen",
-      image: "/images/board-members.jpeg",
+      image: "/images/board-members.png",
       content: {
         title: "Leadership Team",
         description: "Our Board comprises elected representatives from various departments including Operations, Finance, Human Resources, and Plantation divisions. Elections are held every one years ensuring fresh perspectives and continued member representation.",
@@ -498,7 +498,7 @@ export interface NewsConfig {
 export const newsConfig: NewsConfig = {
   scriptText: "Latest Updates",
   subtitle: "NEWS & ANNOUNCEMENTS",
-  mainTitle: "From Your Cooperative",
+  mainTitle: "Our Shared Journey -Moments & Milestones",
   viewAllText: "View All News",
   readMoreText: "Read More",
   articles: [
@@ -517,14 +517,6 @@ export const newsConfig: NewsConfig = {
       excerpt: "Join us on June 24, 2025 for our AGM where we will present the 2024 financial reports, declare dividends, and elect new board members. All members are encouraged to attend.",
       date: "February 20, 2025",
       category: "AGM",
-    },
-    {
-      id: 3,
-      image: "/images/wang-modal-insan.png",
-      title: "Members New Benefit: Kumpulan Wang Modal Insan",
-      excerpt: "Allocation of funds for the development of competencies, skills, and training of cooperative members and staff, in line with the action plan of the Malaysian Cooperative Commission (SKM)",
-      date: "December 10, 2024",
-      category: "Benefits",
     },
   ],
   testimonialsScriptText: "Member Stories",
@@ -610,7 +602,7 @@ export const contactFormConfig: ContactFormConfig = {
     {
       icon: "Phone",
       label: "Phone",
-      value: "0109621558",
+      value: "6010-9621558",
       subtext: "Office hours only",
     },
     {
@@ -705,7 +697,7 @@ export const footerConfig: FooterConfig = {
       title: "Quick Links",
       links: [
         { name: "About Us", href: "#about" },
-        { name: "Investments", href: "#investments" },
+        { name: "Business Portfolio", href: "#investments" },
         { name: "Member Benefits", href: "#benefits" },
         { name: "News & Updates", href: "#news" },
       ],
