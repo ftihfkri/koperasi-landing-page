@@ -192,16 +192,16 @@ export function Museum() {
                     {museumConfig.openingHours && <p className="text-white text-lg">{museumConfig.openingHours}</p>}
                   </div>
                   {museumConfig.ctaButtonText && (
-                    <button
-                      onClick={() => {
-                        const element = document.querySelector('#contact');
-                        if (element) element.scrollIntoView({ behavior: 'smooth' });
-                      }}
-                      className="btn-primary rounded-sm text-sm px-6"
+                    <a
+                      href="/documents/annual_report_2024.pdf"
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary rounded-sm text-sm px-6 inline-block"
                       aria-label={museumConfig.ctaButtonText}
                     >
                       {museumConfig.ctaButtonText}
-                    </button>
+                    </a>
                   )}
                 </div>
               </div>
