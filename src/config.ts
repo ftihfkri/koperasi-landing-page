@@ -610,7 +610,7 @@ export const contactFormConfig: ContactFormConfig = {
     {
       icon: "Phone",
       label: "Phone",
-      value: "+60 89-771 333",
+      value: "0109621558",
       subtext: "Office hours only",
     },
     {

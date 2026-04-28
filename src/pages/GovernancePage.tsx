@@ -241,12 +241,10 @@ export function GovernancePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
             {[
-              { name: "Constitution", type: "PDF" },
-              { name: "By-Laws", type: "PDF" },
               { name: "Annual Report 2024", type: "PDF" },
-              { name: "Audit Report 2024", type: "PDF" }
+              { name: "By-Laws (UUK)", type: "PDF" }
             ].map((doc, index) => (
               <button
                 key={doc.name}
