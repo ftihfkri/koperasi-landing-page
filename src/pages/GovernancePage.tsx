@@ -243,18 +243,22 @@ export function GovernancePage() {
 
           <div className="grid md:grid-cols-2 gap-4">
             {[
-              { name: "Annual Report 2024", type: "PDF" },
-              { name: "By-Laws (UUK)", type: "PDF" }
+              { name: "Annual Report 2024", type: "PDF", file: "/documents/annual_report_2024.pdf" },
+              { name: "By-Laws (UUK)", type: "PDF", file: "/documents/UUK.pdf" }
             ].map((doc, index) => (
-              <button
+              <a
                 key={doc.name}
-                className="fade-up bg-white/5 border border-white/10 rounded-lg p-4 hover:bg-white/10 hover:border-gold-500/50 transition-all duration-300 text-left"
+                href={doc.file}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fade-up bg-white/5 border border-white/10 rounded-lg p-4 hover:bg-white/10 hover:border-gold-500/50 transition-all duration-300 text-left block"
                 style={{ transitionDelay: `${index * 0.1}s` }}
               >
                 <FileText className="w-8 h-8 text-gold-500 mb-3" />
                 <h4 className="text-white font-medium mb-1">{doc.name}</h4>
                 <span className="text-white/40 text-sm">{doc.type}</span>
-              </button>
+              </a>
             ))}
           </div>
         </div>
