@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { ArrowLeft, Mail, Phone, Award, Calendar, Users } from 'lucide-react';
+import { ArrowLeft, Mail, Phone, Award, Users } from 'lucide-react';
 
 export function BoardMembersPage() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -32,63 +32,54 @@ export function BoardMembersPage() {
       name: "Muzaffah Hassan",
       position: "Chairman",
       department: "Oil Palm Plantations",
-      tenure: "Since 2020",
       photo: "/images/board/muzzafah_hassan.png",
     },
     {
       name: "Rose Asman Samsul Bahrin",
       position: "Secretary",
       department: "Oil Palm Plantations",
-      tenure: "Since 2019",
       photo: "/images/board/rose_asman.png",
     },
     {
       name: "Walter Denesh Veerapathiran",
       position: "Treasurer",
       department: "Corporate Planning",
-      tenure: "Since 2018",
       photo: "/images/board/walter_danesh.png",
     },
     {
       name: "Haji Abdul Rashid Hussein",
       position: "Committee Member",
       department: "Oil Palm Plantations",
-      tenure: "Since 2022",
       photo: "/images/board/abdul_rashid.png",
     },
     {
       name: "Safiah Yusof",
       position: "Committee Member",
       department: "Human Resources",
-      tenure: "Since 2020",
       photo: "/images/board/safiah_yusof.png",
     },
     {
       name: "Masiara Hj Marsuki",
       position: "Committee Member",
       department: "Tree Plantation",
-      tenure: "Since 2016",
       photo: "/images/board/masiara_marsuki.png",
     },
     {
       name: "Velis Mohd Said Ismail",
       position: "Committee Member",
       department: "Engineering",
-      tenure: "Since 2021",
       photo: "/images/board/velis.png",
     },
     {
       name: "Nordin Otong",
       position: "Committee Member",
       department: "Quality Control",
-      tenure: "Since 2022",
       photo: "/images/board/nordin_otong.png",
     },
     {
       name: "Francis Goh",
       position: "Committee Member",
       department: "Tree Plantation(retired)",
-      tenure: "Since 2022",
       photo: "/images/board/francis_goh.png",
     }
   ];
@@ -215,11 +206,7 @@ export function BoardMembersPage() {
                   <h3 className="font-serif text-xl text-white mb-1 group-hover:text-gold-300 transition-colors">
                     {member.name}
                   </h3>
-                  <p className="text-gold-400 text-sm mb-3">{member.department}</p>
-                  <div className="flex items-center gap-2 text-white/40 text-xs">
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>{member.tenure}</span>
-                  </div>
+                  <p className="text-gold-400 text-sm">{member.department}</p>
                 </div>
               </div>
             ))}
