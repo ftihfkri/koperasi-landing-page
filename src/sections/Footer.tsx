@@ -54,8 +54,8 @@ export function Footer() {
   return (
     <footer className="relative border-t border-white/10" role="contentinfo">
       {/* Main Footer */}
-      <div className="container-custom py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+      <div className="container-custom py-12 sm:py-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
@@ -142,7 +142,7 @@ export function Footer() {
                     <span>{footerConfig.newsletterSuccessText}</span>
                   </div>
                 ) : (
-                  <form onSubmit={handleNewsletter} className="flex gap-2">
+                  <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row gap-2">
                     <label htmlFor="newsletter-email" className="sr-only">{footerConfig.newsletterLabel}</label>
                     <input
                       id="newsletter-email"
@@ -152,7 +152,7 @@ export function Footer() {
                       placeholder={footerConfig.newsletterPlaceholder}
                       required
                       autoComplete="email"
-                      className="flex-1 px-3 py-2 bg-white/5 border border-white/20 rounded-sm text-white text-sm placeholder-white/40 focus:outline-none focus:border-gold-500 transition-colors"
+                      className="min-w-0 flex-1 px-3 py-2 bg-white/5 border border-white/20 rounded-sm text-white text-sm placeholder-white/40 focus:outline-none focus:border-gold-500 transition-colors"
                     />
                     <button
                       type="submit"

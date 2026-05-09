@@ -103,8 +103,8 @@ export function BoardMembersPage() {
   return (
     <div ref={sectionRef} className="min-h-screen bg-[#0c1a0f]">
       {/* Header */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-wine-800/95 backdrop-blur-md py-4">
-        <div className="container-custom flex items-center gap-4">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-wine-800/95 backdrop-blur-md py-3 sm:py-4">
+        <div className="container-custom flex items-center gap-3 sm:gap-4">
           <button
             onClick={goBack}
             className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition-colors"
@@ -127,10 +127,10 @@ export function BoardMembersPage() {
             <span className="text-gold-500 text-xs uppercase tracking-[0.2em] mb-4 block">
               ELECTED BY MEMBERS
             </span>
-            <h1 className="font-serif text-4xl md:text-5xl text-white mb-6">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white mb-6">
               Board of Directors
             </h1>
-            <p className="text-white/70 text-lg leading-relaxed">
+            <p className="text-white/70 text-base sm:text-lg leading-relaxed">
               Our Board of Directors comprises of elected representatives 
               from members of the KOPSSB which are done through proper nomination 
               and election in the Annual General Meeting. The board of directors 
@@ -155,7 +155,7 @@ export function BoardMembersPage() {
                 className="fade-up text-center p-6 bg-white/5 rounded-lg"
                 style={{ transitionDelay: `${index * 0.1}s` }}
               >
-                <div className="font-serif text-4xl text-gold-500 mb-2">{stat.value}</div>
+                <div className="font-serif text-3xl sm:text-4xl text-gold-500 mb-2">{stat.value}</div>
                 <div className="text-white/60 text-sm">{stat.label}</div>
               </div>
             ))}
@@ -167,7 +167,7 @@ export function BoardMembersPage() {
       <section className="py-16 section-padding">
         <div className="container-custom">
           <div className="fade-up text-center mb-12">
-            <h2 className="font-serif text-3xl text-white mb-4">Current Board (2024-2025)</h2>
+            <h2 className="font-serif text-2xl sm:text-3xl text-white mb-4">Current Board (2024-2025)</h2>
             <p className="text-white/60 max-w-2xl mx-auto">
               Elected at the 8th Annual General Meeting (14th June 2025)
             </p>
@@ -235,7 +235,7 @@ export function BoardMembersPage() {
               <span className="text-gold-500 text-xs uppercase tracking-[0.2em] mb-4 block">
                 DEMOCRATIC PROCESS
               </span>
-              <h2 className="font-serif text-3xl text-white mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl text-white mb-6">
                 How Board Members Are Elected
               </h2>
               <p className="text-white/70 mb-6 leading-relaxed">
@@ -311,7 +311,7 @@ export function BoardMembersPage() {
       <section className="py-16 section-padding">
         <div className="container-custom">
           <div className="fade-up text-center mb-12">
-            <h2 className="font-serif text-3xl text-white mb-4">Past Leadership</h2>
+            <h2 className="font-serif text-2xl sm:text-3xl text-white mb-4">Past Leadership</h2>
             <p className="text-white/60 max-w-2xl mx-auto">
               Honoring those who have served as Chairman
             </p>
@@ -343,7 +343,7 @@ export function BoardMembersPage() {
       <section className="py-16 section-padding bg-wine-900/30">
         <div className="container-custom">
           <div className="fade-up text-center max-w-2xl mx-auto">
-            <h2 className="font-serif text-3xl text-white mb-4">Contact the Board</h2>
+            <h2 className="font-serif text-2xl sm:text-3xl text-white mb-4">Contact the Board</h2>
             <p className="text-white/60 mb-8">
               Have questions or suggestions? Reach out to our Board Secretary
             </p>

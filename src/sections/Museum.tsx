@@ -92,7 +92,7 @@ export function Museum() {
             {/* Tab Content */}
             <div className="fade-up" style={{ transitionDelay: '0.2s' }}>
               {activeTabData && (
-                <div className="p-6 bg-white/5 rounded-lg border border-white/10 transition-all duration-300">
+                <div className="p-4 sm:p-6 bg-white/5 rounded-lg border border-white/10 transition-all duration-300">
                   <h3 className="font-serif text-h5 text-white mb-4">
                     {activeTabData.content.title}
                   </h3>
@@ -131,9 +131,9 @@ export function Museum() {
 
             {/* Founder Photo & Quote */}
             {museumConfig.quote.text && (
-              <div className="fade-up mt-8 flex items-center gap-6" style={{ transitionDelay: '0.3s' }}>
+              <div className="fade-up mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6" style={{ transitionDelay: '0.3s' }}>
                 {museumConfig.founderPhoto && (
-                  <div className="w-24 h-24 rounded-lg overflow-hidden border-2 border-gold-500/30 shadow-lg flex-shrink-0">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden border-2 border-gold-500/30 shadow-lg flex-shrink-0">
                     <img
                       src={museumConfig.founderPhoto}
                       alt={museumConfig.founderPhotoAlt}
@@ -185,11 +185,11 @@ export function Museum() {
 
 
               {/* Bottom Info */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                <div className="flex items-center justify-between">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black/80 to-transparent">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <div>
-                    {museumConfig.openingHoursLabel && <p className="text-gold-400 text-sm">{museumConfig.openingHoursLabel}</p>}
-                    {museumConfig.openingHours && <p className="text-white text-lg">{museumConfig.openingHours}</p>}
+                    {museumConfig.openingHoursLabel && <p className="text-gold-400 text-xs sm:text-sm">{museumConfig.openingHoursLabel}</p>}
+                    {museumConfig.openingHours && <p className="text-white text-base sm:text-lg">{museumConfig.openingHours}</p>}
                   </div>
                   {museumConfig.ctaButtonText && (
                     <a
@@ -197,7 +197,7 @@ export function Museum() {
                       download
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-primary rounded-sm text-sm px-6 inline-block"
+                      className="btn-primary rounded-sm text-sm px-4 sm:px-6 inline-block w-fit"
                       aria-label={museumConfig.ctaButtonText}
                     >
                       {museumConfig.ctaButtonText}
