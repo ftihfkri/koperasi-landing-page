@@ -49,8 +49,8 @@ export interface NavigationConfig {
 }
 
 export const navigationConfig: NavigationConfig = {
-  brandName: "Koperasi Kakitangan Sabah Softwoods",
-  brandSubname: "Berhad",
+  brandName: "Koperasi Kakitangan Sabah Softwoods Berhad",
+  brandSubname: "",
   tagline: "Employee Cooperative Since 2012",
   navLinks: [
     {
@@ -684,13 +684,11 @@ export interface FooterConfig {
 }
 
 export const footerConfig: FooterConfig = {
-  brandName: "Koperasi Sabah Softwoods",
+  brandName: "Koperasi Kakitangan Sabah Softwoods Berhad",
   tagline: "Employee Cooperative Since 2012",
   description: "An employee cooperative empowering staff of Sabah Softwoods Berhad through collective investment, annual dividends, and comprehensive member benefits.",
   socialLinks: [
-    { icon: "Facebook", label: "Facebook", href: "#" },
-    { icon: "Instagram", label: "Instagram", href: "#" },
-    { icon: "Twitter", label: "Twitter", href: "#" },
+    { icon: "Facebook", label: "Facebook", href: "https://www.facebook.com/share/1FUsNLV8NB/?mibextid=wwXIfr" },
   ],
   linkGroups: [
     {
@@ -705,8 +703,8 @@ export const footerConfig: FooterConfig = {
     {
       title: "Member Services",
       links: [
-        { name: "Annual Reports", href: "#" },
-        { name: "Member Portal", href: "#" },
+        { name: "Annual Reports", href: "/documents/annual_report_2024.pdf" },
+        { name: "Member Login", href: "http://localhost/koperasi-kakitangan/public/login" },
       ],
     },
   ],
@@ -721,7 +719,7 @@ export const footerConfig: FooterConfig = {
   newsletterSuccessText: "Thank you for subscribing!",
   newsletterErrorText: "Please try again.",
   newsletterEndpoint: "https://formspree.io/f/YOUR_NEWSLETTER_ID",
-  copyrightText: "© 2026 Koperasi Sabah Softwoods. All rights reserved.",
+  copyrightText: "Koperasi Kakitangan Sabah Softwoods Berhad. All rights reserved.",
   legalLinks: ["Privacy Policy", "Terms of Use", "Cooperative Act"],
   icpText: "Registered under Cooperative Societies Act 1993",
   backToTopText: "Back to top",

@@ -73,26 +73,26 @@ export function Navigation() {
       role="navigation"
       aria-label="Main navigation"
     >
-      <div className="container-custom flex items-center justify-between">
+      <div className="container-custom flex items-center justify-between gap-4">
         {/* Logo */}
         <Link
           to="/"
-          className="flex items-center gap-3 group"
+          className="flex items-center gap-3 group min-w-0 flex-shrink"
           aria-label={navigationConfig.brandName}
         >
           <img
             src="/logo-kopssb.jpeg"
             alt="KOP-SSB"
-            className="h-8 w-auto transition-transform duration-300 group-hover:scale-110"
+            className="h-8 w-auto flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
           />
-          <div className="flex flex-col">
-            <span className="font-serif text-xl text-white tracking-wide">{navigationConfig.brandName}</span>
-            <span className="text-[10px] text-gold-400 tracking-widest uppercase">{navigationConfig.tagline}</span>
+          <div className="flex flex-col min-w-0">
+            <span className="font-serif text-sm sm:text-base lg:text-sm xl:text-lg text-white tracking-wide leading-tight">{navigationConfig.brandName}</span>
+            <span className="text-[9px] sm:text-[10px] text-gold-400 tracking-widest uppercase">{navigationConfig.tagline}</span>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-8" role="menubar">
+        <div className="hidden lg:flex items-center gap-4 xl:gap-8 flex-shrink-0" role="menubar">
           {navLinks.map((link) => (
               <div
                 key={link.name}
@@ -103,7 +103,7 @@ export function Navigation() {
               >
                 <button
                   onClick={() => !link.dropdown && handleNavigation(link.href)}
-                  className="flex items-center gap-1 text-base text-white/80 hover:text-gold-400 transition-colors duration-300 py-2"
+                  className="flex items-center gap-1 text-sm xl:text-base text-white/80 hover:text-gold-400 transition-colors duration-300 py-2 whitespace-nowrap"
                   role="menuitem"
                   aria-haspopup={link.dropdown ? 'true' : undefined}
                   aria-expanded={link.dropdown ? activeDropdown === link.name : undefined}
