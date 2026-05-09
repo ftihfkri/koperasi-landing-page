@@ -85,9 +85,9 @@ export function Navigation() {
             alt="KOP-SSB"
             className="h-8 w-auto flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
           />
-          <div className="flex flex-col min-w-0">
-            <span className="font-serif text-sm sm:text-base lg:text-sm xl:text-lg text-white tracking-wide leading-tight">{navigationConfig.brandName}</span>
-            <span className="text-[9px] sm:text-[10px] text-gold-400 tracking-widest uppercase">{navigationConfig.tagline}</span>
+          <div className="flex flex-col min-w-0 leading-tight">
+            <span className="font-serif text-lg sm:text-xl text-white tracking-wide">KOP-SSB</span>
+            <span className="text-[9px] sm:text-[10px] text-gold-400 tracking-widest uppercase truncate">{navigationConfig.brandName}</span>
           </div>
         </Link>
 
@@ -146,13 +146,15 @@ export function Navigation() {
 
         {/* CTA Button */}
         {navigationConfig.ctaButtonText && (
-          <button
-            onClick={() => handleNavigation('#contact')}
-            className="hidden lg:block btn-primary rounded"
+          <a
+            href="http://localhost/koperasi-kakitangan/public/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:inline-block btn-primary rounded whitespace-nowrap"
             aria-label={navigationConfig.ctaButtonText}
           >
             {navigationConfig.ctaButtonText}
-          </button>
+          </a>
         )}
 
         {/* Mobile Menu Button */}
@@ -248,13 +250,15 @@ export function Navigation() {
           })}
 
           {navigationConfig.ctaButtonText && (
-            <button
-              onClick={() => handleNavigation('#contact')}
+            <a
+              href="http://localhost/koperasi-kakitangan/public/login"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary rounded mt-6 text-center"
               role="menuitem"
             >
               {navigationConfig.ctaButtonText}
-            </button>
+            </a>
           )}
         </div>
       </div>
