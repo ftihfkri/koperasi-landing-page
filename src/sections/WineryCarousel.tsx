@@ -193,7 +193,7 @@ export function WineryCarousel() {
                   {/* CTA */}
                   {navigationConfig.ctaButtonText && (
                     <a
-                      href="http://localhost/koperasi-kakitangan/public/login"
+                      href={navigationConfig.ctaButtonUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-dark rounded-sm inline-block w-fit"

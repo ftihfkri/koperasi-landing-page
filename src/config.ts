@@ -46,6 +46,7 @@ export interface NavigationConfig {
   tagline: string;
   navLinks: NavLink[];
   ctaButtonText: string;
+  ctaButtonUrl: string;
 }
 
 export const navigationConfig: NavigationConfig = {
@@ -90,6 +91,8 @@ export const navigationConfig: NavigationConfig = {
     },
   ],
   ctaButtonText: "Member Login",
+  // TODO: replace with production member portal URL before deploying
+  ctaButtonUrl: "http://localhost/koperasi-kakitangan/public/login",
 };
 
 // -----------------------------------------------------------------------------
