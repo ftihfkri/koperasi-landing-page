@@ -18,6 +18,7 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>('home');
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,20 +31,11 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => { document.body.style.overflow = ''; };
-  }, [isMobileMenuOpen]);
-
   // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
+    setMobileDropdown(null);
   }, [location.pathname]);
 
   // Track which home-page section is in view so the matching nav link can be
@@ -112,49 +104,42 @@ export function Navigation() {
   };
 
   const handleNavigation = (href: string) => {
-    // Close menu first so body scroll-lock is released before we try to scroll.
-    // Without this delay, smooth scrollIntoView is dropped on iOS Safari while
-    // the body still has overflow:hidden from the menu being open.
-    const wasOpen = isMobileMenuOpen;
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
+    setMobileDropdown(null);
 
-    const run = () => {
-      if (isHashLink(href)) {
-        if (location.pathname !== '/') {
-          navigate('/' + href);
-        } else {
+    if (isHashLink(href)) {
+      if (location.pathname !== '/') {
+        navigate('/' + href);
+      } else {
+        // Defer scroll to next tick so the menu has finished closing/unmounting.
+        requestAnimationFrame(() => {
           const element = document.querySelector(href);
           if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
-        }
-      } else {
-        navigate(href);
+        });
       }
-    };
-
-    if (wasOpen) {
-      setTimeout(run, 320);
     } else {
-      run();
+      navigate(href);
     }
   };
 
   const navLinks = navigationConfig.navLinks;
 
+  // Mobile menu open = solid background for readability. We also force a solid
+  // bg when scrolled. Otherwise the hero bg shows through, which is fine.
+  const navBg = isMobileMenuOpen || isScrolled
+    ? 'bg-wine-800/95 backdrop-blur-md'
+    : 'bg-transparent';
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[120] transition-all duration-500 ${
-        isScrolled || isMobileMenuOpen
-          ? 'bg-wine-800/95 backdrop-blur-md py-2 sm:py-3'
-          : 'bg-transparent py-3 sm:py-5'
-      }`}
-      style={{ paddingTop: `max(${isScrolled || isMobileMenuOpen ? '0.5rem' : '0.75rem'}, env(safe-area-inset-top))` }}
+      className={`fixed top-0 left-0 right-0 z-50 ${navBg} transition-colors duration-300`}
       role="navigation"
       aria-label="Main navigation"
     >
-      <div className="container-custom flex items-center justify-between gap-3 sm:gap-4">
+      <div className="container-custom flex items-center justify-between gap-3 sm:gap-4 py-3 sm:py-4">
         {/* Logo */}
         <Link
           to="/"
@@ -164,9 +149,7 @@ export function Navigation() {
           <img
             src="/logo-kopssb.jpeg"
             alt="KOP-SSB"
-            className={`w-auto flex-shrink-0 transition-all duration-300 group-hover:scale-110 ${
-              isScrolled ? 'h-6 sm:h-7' : 'h-7 sm:h-8'
-            }`}
+            className="h-7 sm:h-8 w-auto flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
           />
           <div className="flex flex-col min-w-0 leading-tight">
             <span className="font-serif text-base sm:text-lg md:text-xl text-white tracking-wide">KOP-SSB</span>
@@ -186,6 +169,7 @@ export function Navigation() {
                 role="none"
               >
                 <button
+                  type="button"
                   onClick={() => {
                     if (link.dropdown) {
                       setActiveDropdown((current) => (current === link.name ? null : link.name));
@@ -206,7 +190,6 @@ export function Navigation() {
                       activeDropdown === link.name ? 'rotate-180' : ''
                     }`} aria-hidden="true" />
                   )}
-                  {/* Underline indicator (animates in on hover, stays on for active) */}
                   <span
                     className={`absolute left-0 right-0 -bottom-0.5 h-[2px] bg-gold-500 origin-left transition-transform duration-300 ${
                       parentActive ? 'scale-x-100' : 'scale-x-0 group-hover/navlink:scale-x-100'
@@ -231,6 +214,7 @@ export function Navigation() {
                         return (
                           <button
                             key={item.name}
+                            type="button"
                             onClick={() => handleNavigation(item.href)}
                             className={`block w-full text-left px-4 py-3 text-sm transition-colors ${
                               itemActive
@@ -251,7 +235,7 @@ export function Navigation() {
           })}
         </div>
 
-        {/* CTA Button */}
+        {/* Desktop CTA */}
         {navigationConfig.ctaButtonText && (
           <a
             href={navigationConfig.ctaButtonUrl}
@@ -264,123 +248,107 @@ export function Navigation() {
           </a>
         )}
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button — kept dead simple. No transforms, no layered
+            z-indexes. The whole nav is z-50, this button sits naturally inside it. */}
         <button
           type="button"
-          className="lg:hidden relative z-[130] p-3 -mr-2 text-white touch-manipulation"
           onClick={() => setIsMobileMenuOpen((open) => !open)}
+          className="lg:hidden inline-flex items-center justify-center w-11 h-11 text-white cursor-pointer"
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}
-          style={{ WebkitTapHighlightColor: 'transparent' }}
+          aria-controls="mobile-menu"
         >
-          {isMobileMenuOpen ? (
-            <X className="w-6 h-6" />
-          ) : (
-            <Menu className="w-6 h-6" />
-          )}
+          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
-      {/* Full Screen Backdrop Blur Overlay */}
+      {/* Mobile Menu — rendered as a sibling of the nav header inside the same
+          <nav>. Conditional render = no z-index war, no fade-in transitions
+          that can stall on iOS Safari, no fixed-position overlays to debug.
+          When open, it pushes content down naturally. */}
       {isMobileMenuOpen && (
         <div
-          className="lg:hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-2xl"
-          onClick={() => setIsMobileMenuOpen(false)}
-          aria-hidden="true"
-        />
-      )}
+          id="mobile-menu"
+          className="lg:hidden bg-wine-900 border-t border-white/10 max-h-[calc(100vh-4rem)] overflow-y-auto overscroll-contain"
+          role="menu"
+        >
+          <div className="container-custom py-4 flex flex-col">
+            {navLinks.map((link) => {
+              const IconComponent = iconMap[link.icon];
+              const parentActive = isParentActive(link);
+              const dropdownOpen = mobileDropdown === link.name;
 
-      {/* Mobile Menu */}
-      <div
-        className={`lg:hidden fixed inset-x-0 top-0 bottom-0 z-[110] bg-wine-900/95 backdrop-blur-xl transition-all duration-500 overflow-y-auto overscroll-contain ${
-          isMobileMenuOpen
-            ? 'opacity-100 visible'
-            : 'opacity-0 invisible pointer-events-none'
-        }`}
-        role="menu"
-        aria-hidden={!isMobileMenuOpen}
-        style={{ paddingTop: 'calc(env(safe-area-inset-top) + 4.5rem)' }}
-      >
-        <div className="container-custom py-6 flex flex-col gap-1">
-          {navLinks.map((link, index) => {
-            const IconComponent = iconMap[link.icon];
-            const parentActive = isParentActive(link);
-            return (
-              <div
-                key={link.name}
-                className="animate-fade-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {link.dropdown ? (
-                  <div>
+              if (link.dropdown) {
+                return (
+                  <div key={link.name} className="border-b border-white/10">
                     <button
-                      onClick={() => setActiveDropdown(activeDropdown === link.name ? null : link.name)}
-                      className={`flex items-center justify-between w-full py-4 text-lg border-b border-white/10 ${
+                      type="button"
+                      onClick={() => setMobileDropdown(dropdownOpen ? null : link.name)}
+                      className={`flex items-center justify-between w-full py-4 text-lg cursor-pointer ${
                         parentActive ? 'text-gold-400' : 'text-white'
                       }`}
-                      aria-expanded={activeDropdown === link.name}
-                      role="menuitem"
+                      aria-expanded={dropdownOpen}
                     >
                       <span className="flex items-center gap-3">
                         {IconComponent && <IconComponent className="w-5 h-5 text-gold-500" />}
                         {link.name}
                       </span>
-                      <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${
-                        activeDropdown === link.name ? 'rotate-180' : ''
-                      }`} aria-hidden="true" />
+                      <ChevronDown
+                        className={`w-5 h-5 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
+                        aria-hidden="true"
+                      />
                     </button>
-                    <div
-                      className={`overflow-hidden transition-all duration-500 ${
-                        activeDropdown === link.name ? 'max-h-60' : 'max-h-0'
-                      }`}
-                      role="menu"
-                    >
-                      {link.dropdown.map((item) => {
-                        const itemActive = isLinkActive(item.href);
-                        return (
-                          <button
-                            key={item.name}
-                            onClick={() => handleNavigation(item.href)}
-                            className={`block w-full text-left pl-12 py-3 ${
-                              itemActive ? 'text-gold-400' : 'text-white/70 hover:text-gold-400'
-                            }`}
-                            role="menuitem"
-                          >
-                            {item.name}
-                          </button>
-                        );
-                      })}
-                    </div>
+                    {dropdownOpen && (
+                      <div className="pb-2">
+                        {link.dropdown.map((item) => {
+                          const itemActive = isLinkActive(item.href);
+                          return (
+                            <button
+                              key={item.name}
+                              type="button"
+                              onClick={() => handleNavigation(item.href)}
+                              className={`block w-full text-left pl-12 py-3 cursor-pointer ${
+                                itemActive ? 'text-gold-400' : 'text-white/70 hover:text-gold-400'
+                              }`}
+                            >
+                              {item.name}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
-                ) : (
-                  <button
-                    onClick={() => handleNavigation(link.href)}
-                    className={`flex items-center gap-3 w-full py-4 text-lg border-b border-white/10 transition-colors ${
-                      parentActive ? 'text-gold-400' : 'text-white hover:text-gold-400'
-                    }`}
-                    role="menuitem"
-                  >
-                    {IconComponent && <IconComponent className="w-5 h-5 text-gold-500" />}
-                    {link.name}
-                  </button>
-                )}
-              </div>
-            );
-          })}
+                );
+              }
 
-          {navigationConfig.ctaButtonText && (
-            <a
-              href={navigationConfig.ctaButtonUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary rounded mt-6 text-center"
-              role="menuitem"
-            >
-              {navigationConfig.ctaButtonText}
-            </a>
-          )}
+              return (
+                <button
+                  key={link.name}
+                  type="button"
+                  onClick={() => handleNavigation(link.href)}
+                  className={`flex items-center gap-3 w-full py-4 text-lg border-b border-white/10 cursor-pointer ${
+                    parentActive ? 'text-gold-400' : 'text-white hover:text-gold-400'
+                  }`}
+                >
+                  {IconComponent && <IconComponent className="w-5 h-5 text-gold-500" />}
+                  {link.name}
+                </button>
+              );
+            })}
+
+            {navigationConfig.ctaButtonText && (
+              <a
+                href={navigationConfig.ctaButtonUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary rounded mt-4 text-center"
+              >
+                {navigationConfig.ctaButtonText}
+              </a>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 }
