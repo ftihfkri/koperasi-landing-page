@@ -72,17 +72,18 @@ export function WineryCarousel() {
         {/* Carousel */}
         <div className="slide-in-left" style={{ transitionDelay: '0.1s' }}>
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-0 items-stretch">
-            {/* Image Side — only the current slide is rendered. Simpler than
-                stacking all slides with opacity transitions, which had been
-                misbehaving on iOS Safari. */}
-            <div className="relative aspect-[4/3] xs:aspect-[5/4] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[500px] lg:max-h-none rounded-lg lg:rounded-r-none overflow-hidden bg-gradient-to-br from-gold-100 to-white">
+            {/* Image Side. Uses padding-bottom aspect hack (ratio-box) for
+                cross-iOS-Safari support — the CSS aspect-ratio property
+                doesn't work on iOS Safari < 15, which would collapse this
+                container to 0 height and hide the image entirely. */}
+            <div className="ratio-box ratio-4-3 ratio-box-lg-auto rounded-lg lg:rounded-r-none overflow-hidden bg-gradient-to-br from-gold-100 to-white lg:min-h-[500px]">
               {slides.map((slide, index) => (
                 <img
                   key={index}
                   src={slide.image}
                   alt={`${slide.title} - ${slide.description}`}
                   loading={index === 0 ? 'eager' : 'lazy'}
-                  className={`absolute inset-0 w-full h-full object-contain p-2 sm:p-6 ${
+                  className={`absolute inset-0 w-full h-full object-contain p-2 sm:p-6 transition-opacity duration-500 ${
                     index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                   }`}
                 />

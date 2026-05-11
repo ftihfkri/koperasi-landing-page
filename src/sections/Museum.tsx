@@ -173,7 +173,9 @@ export function Museum() {
 
           {/* Right Image */}
           <div className="slide-in-right relative" style={{ transitionDelay: '0.15s' }}>
-            <div className="relative aspect-[16/9] md:aspect-[4/3] lg:aspect-[4/5] max-h-[240px] sm:max-h-[360px] md:max-h-[480px] lg:max-h-none rounded-lg overflow-hidden bg-wine-700">
+            {/* ratio-box uses padding-bottom hack so the container has height
+                on iOS Safari < 15 where CSS aspect-ratio is unsupported. */}
+            <div className="ratio-box ratio-16-9 ratio-box-lg-auto rounded-lg overflow-hidden bg-wine-700 lg:min-h-[520px]">
               {museumConfig.tabs.map((tab, idx) => (
                 <div
                   key={tab.id}

@@ -271,6 +271,31 @@
 }
 
 @layer utilities {
+  /* Responsive aspect-ratio fallback using padding-bottom hack.
+     iOS Safari < 15 does not support the CSS aspect-ratio property,
+     so Tailwind's `aspect-[4/3]` silently fails there and the container
+     collapses to 0 height — making absolutely-positioned content invisible.
+     These utilities use the padding-bottom hack which works everywhere. */
+  .ratio-box {
+    position: relative;
+    width: 100%;
+  }
+  .ratio-box::before {
+    content: '';
+    display: block;
+  }
+  .ratio-4-3::before { padding-bottom: 75%; }
+  .ratio-16-9::before { padding-bottom: 56.25%; }
+  .ratio-5-4::before { padding-bottom: 80%; }
+
+  /* On lg+ we use an explicit min-height instead of an aspect ratio so the
+     two-column image+content grid items can stretch to match. */
+  @media (min-width: 1024px) {
+    .ratio-box-lg-auto::before {
+      display: none;
+    }
+  }
+
   /* Text gradient */
   .text-gradient-gold {
     background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
