@@ -109,19 +109,29 @@ export function Museum() {
               )}
             </div>
 
-            {/* Horizontal Timeline */}
+            {/* Vertical Timeline on mobile, horizontal on lg+ */}
             {museumConfig.timeline.length > 0 && (
               <div className="fade-up mt-8" style={{ transitionDelay: '0.25s' }}>
-                <div className="relative">
-                  {/* Horizontal line */}
+                {/* Mobile: vertical list — readable, no horizontal scroll */}
+                <ol className="lg:hidden relative border-l border-gold-500/30 pl-5 space-y-4">
+                  {museumConfig.timeline.map((event) => (
+                    <li key={event.year} className="relative">
+                      <span className="absolute -left-[27px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#0c1a0f] border-2 border-gold-500" />
+                      <div className="font-serif text-base text-gold-500">{event.year}</div>
+                      <div className="text-xs text-white/70 mt-0.5 leading-snug">{event.event}</div>
+                    </li>
+                  ))}
+                </ol>
+
+                {/* Desktop: horizontal strip */}
+                <div className="hidden lg:block relative">
                   <div className="absolute top-3 left-0 right-0 h-px bg-gold-500/30" />
-                  {/* Timeline points */}
-                  <div className="flex justify-between overflow-x-auto gap-2">
+                  <div className="flex justify-between gap-2">
                     {museumConfig.timeline.map((event) => (
-                      <div key={event.year} className="relative flex flex-col items-center flex-shrink-0 min-w-[70px]">
+                      <div key={event.year} className="relative flex flex-col items-center flex-shrink-0 min-w-[90px] max-w-[140px]">
                         <div className="w-2.5 h-2.5 rounded-full bg-[#0c1a0f] border-2 border-gold-500 z-10" />
                         <span className="font-serif text-sm text-gold-500 mt-2">{event.year}</span>
-                        <span className="text-[11px] text-white/60 mt-0.5 text-center whitespace-nowrap">{event.event}</span>
+                        <span className="text-[11px] text-white/60 mt-0.5 text-center leading-snug">{event.event}</span>
                       </div>
                     ))}
                   </div>
@@ -163,7 +173,7 @@ export function Museum() {
 
           {/* Right Image */}
           <div className="slide-in-right relative" style={{ transitionDelay: '0.15s' }}>
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[4/3] lg:aspect-[4/5] max-h-[320px] sm:max-h-[420px] md:max-h-[520px] lg:max-h-none rounded-lg overflow-hidden bg-wine-700">
+            <div className="relative aspect-[16/9] md:aspect-[4/3] lg:aspect-[4/5] max-h-[240px] sm:max-h-[360px] md:max-h-[480px] lg:max-h-none rounded-lg overflow-hidden bg-wine-700">
               {museumConfig.tabs.map((tab, idx) => (
                 <div
                   key={tab.id}

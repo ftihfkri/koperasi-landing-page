@@ -9,8 +9,6 @@ export function WineryCarousel() {
   const slides = wineryCarouselConfig.slides;
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [direction, setDirection] = useState<'next' | 'prev'>('next');
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,21 +29,12 @@ export function WineryCarousel() {
     return () => observer.disconnect();
   }, []);
 
-  const goToSlide = (index: number, dir: 'next' | 'prev' = 'next') => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setDirection(dir);
+  const goToSlide = (index: number) => {
     setCurrentSlide(index);
-    setTimeout(() => setIsAnimating(false), 600);
   };
 
-  const nextSlide = () => {
-    goToSlide((currentSlide + 1) % slides.length, 'next');
-  };
-
-  const prevSlide = () => {
-    goToSlide((currentSlide - 1 + slides.length) % slides.length, 'prev');
-  };
+  const nextSlide = () => goToSlide((currentSlide + 1) % slides.length);
+  const prevSlide = () => goToSlide((currentSlide - 1 + slides.length) % slides.length);
 
   // Auto-advance slides
   useEffect(() => {
@@ -83,30 +72,22 @@ export function WineryCarousel() {
         {/* Carousel */}
         <div className="slide-in-left" style={{ transitionDelay: '0.1s' }}>
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-0 items-stretch">
-            {/* Image Side with Ken Burns */}
+            {/* Image Side — only the current slide is rendered. Simpler than
+                stacking all slides with opacity transitions, which had been
+                misbehaving on iOS Safari. */}
             <div className="relative aspect-[4/3] xs:aspect-[5/4] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[500px] lg:max-h-none rounded-lg lg:rounded-r-none overflow-hidden bg-gradient-to-br from-gold-100 to-white">
               {slides.map((slide, index) => (
-                <div
+                <img
                   key={index}
-                  className={`absolute inset-0 transition-all duration-700 ease-out ${
-                    index === currentSlide
-                      ? 'opacity-100 scale-100 z-10'
-                      : index === (currentSlide - 1 + slides.length) % slides.length && direction === 'next'
-                        ? 'opacity-0 -translate-x-full z-0'
-                        : index === (currentSlide + 1) % slides.length && direction === 'prev'
-                          ? 'opacity-0 translate-x-full z-0'
-                          : 'opacity-0 z-0 pointer-events-none'
+                  src={slide.image}
+                  alt={`${slide.title} - ${slide.description}`}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  className={`absolute inset-0 w-full h-full object-contain p-2 sm:p-6 ${
+                    index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                   }`}
-                >
-                  <img
-                    src={slide.image}
-                    alt={`${slide.title} - ${slide.description}`}
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    className={`w-full h-full object-contain p-2 sm:p-6 ${index === currentSlide ? 'kenburns' : ''}`}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
-                </div>
+                />
               ))}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none z-20" />
 
               {/* Navigation Arrows */}
               <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 flex gap-2 sm:gap-3 z-30">
@@ -136,7 +117,7 @@ export function WineryCarousel() {
                   <button
                     key={index}
                     type="button"
-                    onClick={() => goToSlide(index, index > currentSlide ? 'next' : 'prev')}
+                    onClick={() => goToSlide(index)}
                     className={`h-2 rounded-full transition-all duration-300 touch-manipulation ${
                       index === currentSlide
                         ? 'w-8 bg-gold-500'
