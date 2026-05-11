@@ -1,2 +1,20 @@
 node_modules
 dist
+dist.zip
+
+# Editor / IDE
+.claude/
+.vscode/
+.idea/
+
+# Build cache
+*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.local
+.env.*.local
