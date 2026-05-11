@@ -2,28 +2,36 @@ import { useState, useEffect } from 'react';
 import { preloaderConfig } from '../config';
 
 export function Preloader({ onComplete }: { onComplete: () => void }) {
-  // Null check: if config is empty, complete immediately
-  if (!preloaderConfig.brandName) {
-    useEffect(() => { onComplete(); }, [onComplete]);
-    return null;
-  }
-
+  const hasContent = !!preloaderConfig.brandName;
   const [phase, setPhase] = useState<'loading' | 'fading'>('loading');
 
   useEffect(() => {
+    if (!hasContent) {
+      onComplete();
+      return;
+    }
     const fadeTimer = setTimeout(() => setPhase('fading'), 2200);
     const completeTimer = setTimeout(() => onComplete(), 2800);
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(completeTimer);
     };
-  }, [onComplete]);
+  }, [hasContent, onComplete]);
+
+  if (!hasContent) return null;
+
+  const isFading = phase === 'fading';
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] bg-[#0a0a0a] flex flex-col items-center justify-center transition-opacity duration-600 ${
-        phase === 'fading' ? 'opacity-0' : 'opacity-100'
+      // pointer-events-none while fading so taps fall through immediately,
+      // even before React unmounts us. Without this, the preloader can sit
+      // invisibly on top of the nav for 600ms (or longer on throttled iOS
+      // Safari) and swallow the hamburger tap.
+      className={`fixed inset-0 z-[9999] bg-[#0a0a0a] flex flex-col items-center justify-center transition-opacity duration-500 ${
+        isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
+      aria-hidden={isFading}
     >
       {/* Logo Icon */}
       <div className="preloader-text mb-6">
