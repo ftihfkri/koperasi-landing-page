@@ -358,7 +358,7 @@ export function BoardMembersPage() {
       <footer className="py-8 border-t border-white/10">
         <div className="container-custom text-center">
           <p className="text-white/40 text-sm">
-            © 2026 Koperasi Sabah Softwoods. Board members serve voluntary terms.
+            © 2026 Koperasi Kakitangan Sabah Softwoods Berhad. Board members serve voluntary terms.
           </p>
         </div>
       </footer>

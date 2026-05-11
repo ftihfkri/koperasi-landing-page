@@ -45,49 +45,62 @@ export function Navigation() {
   const isHashLink = (href: string) => href.startsWith('#');
 
   const handleNavigation = (href: string) => {
-    if (isHashLink(href)) {
-      if (location.pathname !== '/') {
-        navigate('/' + href);
-      } else {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    } else {
-      navigate(href);
-    }
+    // Close menu first so body scroll-lock is released before we try to scroll.
+    // Without this delay, smooth scrollIntoView is dropped on iOS Safari while
+    // the body still has overflow:hidden from the menu being open.
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
+
+    const run = () => {
+      if (isHashLink(href)) {
+        if (location.pathname !== '/') {
+          navigate('/' + href);
+        } else {
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      } else {
+        navigate(href);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      setTimeout(run, 60);
+    } else {
+      run();
+    }
   };
 
   const navLinks = navigationConfig.navLinks;
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? 'bg-wine-800/95 backdrop-blur-md py-3'
-          : 'bg-transparent py-5'
+      className={`fixed top-0 left-0 right-0 z-[120] transition-all duration-500 ${
+        isScrolled || isMobileMenuOpen
+          ? 'bg-wine-800/95 backdrop-blur-md py-2 sm:py-3'
+          : 'bg-transparent py-3 sm:py-5'
       }`}
+      style={{ paddingTop: `max(${isScrolled || isMobileMenuOpen ? '0.5rem' : '0.75rem'}, env(safe-area-inset-top))` }}
       role="navigation"
       aria-label="Main navigation"
     >
-      <div className="container-custom flex items-center justify-between gap-4">
+      <div className="container-custom flex items-center justify-between gap-3 sm:gap-4">
         {/* Logo */}
         <Link
           to="/"
-          className="flex items-center gap-3 group min-w-0 flex-shrink"
+          className="flex items-center gap-2 sm:gap-3 group min-w-0 flex-shrink"
           aria-label={navigationConfig.brandName}
         >
           <img
             src="/logo-kopssb.jpeg"
             alt="KOP-SSB"
-            className="h-8 w-auto flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+            className="h-7 sm:h-8 w-auto flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
           />
           <div className="flex flex-col min-w-0 leading-tight">
-            <span className="font-serif text-lg sm:text-xl text-white tracking-wide">KOP-SSB</span>
-            <span className="text-[9px] sm:text-[10px] text-gold-400 tracking-widest uppercase truncate">{navigationConfig.brandName}</span>
+            <span className="font-serif text-base sm:text-lg md:text-xl text-white tracking-wide">KOP-SSB</span>
+            <span className="hidden xs:block text-[8px] sm:text-[10px] text-gold-400 tracking-widest uppercase truncate">{navigationConfig.brandName}</span>
           </div>
         </Link>
 
@@ -159,10 +172,12 @@ export function Navigation() {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden p-2 text-white"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          type="button"
+          className="lg:hidden relative z-[130] p-3 -mr-2 text-white touch-manipulation"
+          onClick={() => setIsMobileMenuOpen((open) => !open)}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}
+          style={{ WebkitTapHighlightColor: 'transparent' }}
         >
           {isMobileMenuOpen ? (
             <X className="w-6 h-6" />
@@ -178,21 +193,21 @@ export function Navigation() {
           className="lg:hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-2xl"
           onClick={() => setIsMobileMenuOpen(false)}
           aria-hidden="true"
-          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, height: '100vh', width: '100vw' }}
         />
       )}
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-x-0 top-[72px] bottom-0 z-[110] bg-wine-900/95 backdrop-blur-xl transition-all duration-500 overflow-y-auto ${
+        className={`lg:hidden fixed inset-x-0 top-0 bottom-0 z-[110] bg-wine-900/95 backdrop-blur-xl transition-all duration-500 overflow-y-auto overscroll-contain ${
           isMobileMenuOpen
             ? 'opacity-100 visible'
             : 'opacity-0 invisible pointer-events-none'
         }`}
         role="menu"
         aria-hidden={!isMobileMenuOpen}
+        style={{ paddingTop: 'calc(env(safe-area-inset-top) + 4.5rem)' }}
       >
-        <div className="container-custom py-8 flex flex-col gap-2">
+        <div className="container-custom py-6 flex flex-col gap-1">
           {navLinks.map((link, index) => {
             const IconComponent = iconMap[link.icon];
             return (

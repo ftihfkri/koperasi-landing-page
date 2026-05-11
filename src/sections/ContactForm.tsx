@@ -32,7 +32,7 @@ export function ContactForm() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0.05, rootMargin: '0px' }
     );
 
     const elements = sectionRef.current?.querySelectorAll('.fade-up, .slide-in-left, .slide-in-right');

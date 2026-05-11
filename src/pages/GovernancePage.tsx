@@ -104,7 +104,7 @@ export function GovernancePage() {
               How We Are Governed
             </h1>
             <p className="text-white/70 text-base sm:text-lg leading-relaxed">
-              Koperasi Sabah Softwoods operates under democratic principles where members 
+              Koperasi Kakitangan Sabah Softwoods Berhad operates under democratic principles where members
               have equal say in decision-making. Our governance structure ensures transparency, 
               accountability, and member-centric management.
             </p>
@@ -268,7 +268,7 @@ export function GovernancePage() {
       <footer className="py-8 border-t border-white/10">
         <div className="container-custom text-center">
           <p className="text-white/40 text-sm">
-            © 2025 Koperasi Sabah Softwoods. Registered under Cooperative Societies Act 1993.
+            © 2025 Koperasi Kakitangan Sabah Softwoods Berhad. Registered under Cooperative Societies Act 1993.
           </p>
         </div>
       </footer>

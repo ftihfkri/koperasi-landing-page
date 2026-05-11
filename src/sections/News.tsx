@@ -17,7 +17,7 @@ export function News() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0.05, rootMargin: '0px' }
     );
 
     const elements = sectionRef.current?.querySelectorAll('.fade-up, .slide-in-left, .slide-in-right, .scale-in');
@@ -195,7 +195,7 @@ export function News() {
 
               {/* Image */}
               <div className="slide-in-right relative">
-                <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
+                <div className="relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[4/3] lg:aspect-[4/5] max-h-[520px] lg:max-h-none rounded-lg overflow-hidden bg-wine-700">
                   {newsConfig.storyImage && (
                     <>
                       <img

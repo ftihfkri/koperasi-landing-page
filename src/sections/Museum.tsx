@@ -23,7 +23,7 @@ export function Museum() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0.05, rootMargin: '0px' }
     );
 
     const elements = sectionRef.current?.querySelectorAll('.fade-up, .slide-in-left, .slide-in-right');
@@ -44,7 +44,7 @@ export function Museum() {
       <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-gold-500/5 to-transparent" />
 
       <div className="container-custom relative">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20">
           {/* Left Content */}
           <div>
             {/* Section Header */}
@@ -163,8 +163,8 @@ export function Museum() {
 
           {/* Right Image */}
           <div className="slide-in-right relative" style={{ transitionDelay: '0.15s' }}>
-            <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
-              {museumConfig.tabs.map((tab) => (
+            <div className="relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[4/3] lg:aspect-[4/5] max-h-[520px] lg:max-h-none rounded-lg overflow-hidden bg-wine-700">
+              {museumConfig.tabs.map((tab, idx) => (
                 <div
                   key={tab.id}
                   className={`absolute inset-0 transition-all duration-500 ${
@@ -176,7 +176,7 @@ export function Museum() {
                   <img
                     src={tab.image}
                     alt={`${tab.name} - ${museumConfig.mainTitle}`}
-                    loading="lazy"
+                    loading={idx === 0 ? 'eager' : 'lazy'}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />

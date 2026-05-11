@@ -301,10 +301,24 @@
     padding-bottom: 7.5rem;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1023px) {
     .section-padding {
-      padding-top: 4rem;
-      padding-bottom: 4rem;
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .section-padding {
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
+    }
+  }
+
+  @media (max-width: 379px) {
+    .section-padding {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
     }
   }
 
@@ -313,8 +327,22 @@
     max-width: 1216px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 380px) {
+    .container-custom {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .container-custom {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
   }
 
   @media (min-width: 768px) {

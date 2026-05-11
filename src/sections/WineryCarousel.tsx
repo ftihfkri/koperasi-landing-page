@@ -22,7 +22,7 @@ export function WineryCarousel() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0.05, rootMargin: '0px' }
     );
 
     const elements = sectionRef.current?.querySelectorAll('.fade-up, .slide-in-left, .slide-in-right');
@@ -82,9 +82,9 @@ export function WineryCarousel() {
 
         {/* Carousel */}
         <div className="slide-in-left" style={{ transitionDelay: '0.1s' }}>
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-0 items-stretch">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-0 items-stretch">
             {/* Image Side with Ken Burns */}
-            <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[500px] rounded-lg lg:rounded-r-none overflow-hidden">
+            <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[500px] max-h-[420px] sm:max-h-[480px] lg:max-h-none rounded-lg lg:rounded-r-none overflow-hidden bg-gradient-to-br from-gold-100 to-white">
               {slides.map((slide, index) => (
                 <div
                   key={index}
@@ -101,10 +101,10 @@ export function WineryCarousel() {
                   <img
                     src={slide.image}
                     alt={`${slide.title} - ${slide.description}`}
-                    loading="lazy"
-                    className={`w-full h-full object-contain bg-white ${index === currentSlide ? 'kenburns' : ''}`}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    className={`w-full h-full object-contain p-4 sm:p-6 ${index === currentSlide ? 'kenburns' : ''}`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
                 </div>
               ))}
 
