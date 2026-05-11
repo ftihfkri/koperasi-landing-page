@@ -163,7 +163,7 @@ export function Museum() {
 
           {/* Right Image */}
           <div className="slide-in-right relative" style={{ transitionDelay: '0.15s' }}>
-            <div className="relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[4/3] lg:aspect-[4/5] max-h-[520px] lg:max-h-none rounded-lg overflow-hidden bg-wine-700">
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[4/3] lg:aspect-[4/5] max-h-[320px] sm:max-h-[420px] md:max-h-[520px] lg:max-h-none rounded-lg overflow-hidden bg-wine-700">
               {museumConfig.tabs.map((tab, idx) => (
                 <div
                   key={tab.id}

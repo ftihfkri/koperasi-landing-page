@@ -48,6 +48,7 @@ export function Navigation() {
     // Close menu first so body scroll-lock is released before we try to scroll.
     // Without this delay, smooth scrollIntoView is dropped on iOS Safari while
     // the body still has overflow:hidden from the menu being open.
+    const wasOpen = isMobileMenuOpen;
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
 
@@ -66,8 +67,9 @@ export function Navigation() {
       }
     };
 
-    if (isMobileMenuOpen) {
-      setTimeout(run, 60);
+    if (wasOpen) {
+      // Wait long enough for body overflow to clear + iOS Safari to settle.
+      setTimeout(run, 320);
     } else {
       run();
     }
