@@ -145,21 +145,21 @@ export default function InvestorDashboard() {
 
   return (
     <div className="min-h-screen bg-[#0c1a0f] text-white">
-      <div className="mx-auto max-w-6xl px-4 py-8">
+      <div className="mx-auto max-w-6xl px-4 py-6 sm:py-8">
         {/* Header */}
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h1 className="text-2xl font-semibold">Investor Dashboard</h1>
+            <h1 className="text-xl sm:text-2xl font-semibold">Investor Dashboard</h1>
             <p className="text-sm text-white/70">
               Individual dashboard (showing ID <span className="font-semibold">{profile.id}</span>)
             </p>
           </div>
 
-          <div className="flex gap-2">
-            <button className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm hover:bg-white/10">
+          <div className="flex flex-wrap gap-2">
+            <button className="rounded-xl border border-white/15 bg-white/5 px-3 sm:px-4 py-2 text-sm hover:bg-white/10">
               Download Statement
             </button>
-            <button className="rounded-xl bg-[#d2a855] px-4 py-2 text-sm font-medium text-black hover:opacity-90">
+            <button className="rounded-xl bg-[#d2a855] px-3 sm:px-4 py-2 text-sm font-medium text-black hover:opacity-90">
               Log out
             </button>
           </div>
@@ -189,15 +189,15 @@ export default function InvestorDashboard() {
           </div>
 
           {/* KPIs */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-3 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-2 lg:col-span-3 lg:grid-cols-4">
             <div className="rounded-2xl border border-white/10 bg-black/40 p-5">
               <p className="text-sm text-white/70">Total Invested</p>
-              <p className="mt-2 text-xl font-semibold">{money(totalInvested)}</p>
+              <p className="mt-2 text-lg sm:text-xl font-semibold break-words">{money(totalInvested)}</p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-black/40 p-5">
               <p className="text-sm text-white/70">Total Dividends</p>
-              <p className="mt-2 text-xl font-semibold">{money(totalDividends)}</p>
+              <p className="mt-2 text-lg sm:text-xl font-semibold break-words">{money(totalDividends)}</p>
             </div>
 
             {/* ✅ Added: Yearly Dividend */}
@@ -205,7 +205,7 @@ export default function InvestorDashboard() {
               <p className="text-sm text-white/70">
                 Yearly Dividend ({Math.round(dividendRate * 100)}%)
               </p>
-              <p className="mt-2 text-xl font-semibold">{money(yearlyDividendEstimate)}</p>
+              <p className="mt-2 text-lg sm:text-xl font-semibold break-words">{money(yearlyDividendEstimate)}</p>
               <p className="mt-1 text-xs text-white/50">
                 (demo calc: invested × rate)
               </p>
@@ -213,7 +213,7 @@ export default function InvestorDashboard() {
 
             <div className="rounded-2xl border border-white/10 bg-black/40 p-5">
               <p className="text-sm text-white/70">Membership Duration</p>
-              <p className="mt-2 text-xl font-semibold">{membershipMonths} months</p>
+              <p className="mt-2 text-lg sm:text-xl font-semibold">{membershipMonths} months</p>
             </div>
           </div>
         </div>

@@ -4,6 +4,9 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      screens: {
+        'xs': '380px',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -78,13 +81,13 @@ module.exports = {
         script: ['Dancing Script', 'cursive'],
       },
       fontSize: {
-        'display': ['5.5rem', { lineHeight: '1.1' }],
-        'h1': ['4.5rem', { lineHeight: '1.15' }],
-        'h2': ['3.6rem', { lineHeight: '1.2' }],
-        'h3': ['2.5rem', { lineHeight: '1.25' }],
-        'h4': ['2rem', { lineHeight: '1.3' }],
-        'h5': ['1.5rem', { lineHeight: '1.4' }],
-        'h6': ['1.25rem', { lineHeight: '1.5' }],
+        'display': ['clamp(2.5rem, 6vw + 1rem, 5.5rem)', { lineHeight: '1.1' }],
+        'h1': ['clamp(2rem, 5vw + 0.75rem, 4.5rem)', { lineHeight: '1.15' }],
+        'h2': ['clamp(1.875rem, 4vw + 0.75rem, 3.6rem)', { lineHeight: '1.2' }],
+        'h3': ['clamp(1.5rem, 3vw + 0.5rem, 2.5rem)', { lineHeight: '1.25' }],
+        'h4': ['clamp(1.375rem, 2vw + 0.5rem, 2rem)', { lineHeight: '1.3' }],
+        'h5': ['clamp(1.125rem, 1vw + 0.5rem, 1.5rem)', { lineHeight: '1.4' }],
+        'h6': ['clamp(1rem, 0.5vw + 0.5rem, 1.25rem)', { lineHeight: '1.5' }],
       },
       borderRadius: {
         xl: "calc(var(--radius) + 4px)",

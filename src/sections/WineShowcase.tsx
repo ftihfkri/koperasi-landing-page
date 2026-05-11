@@ -23,7 +23,7 @@ export function WineShowcase() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0.05, rootMargin: '0px' }
     );
 
     const elements = sectionRef.current?.querySelectorAll('.fade-up, .slide-in-left, .slide-in-right');
@@ -65,12 +65,12 @@ export function WineShowcase() {
         </div>
 
         {/* Wine Tabs */}
-        <div className="fade-up flex justify-center gap-2 mb-16" style={{ transitionDelay: '0.1s' }}>
+        <div className="fade-up flex flex-wrap justify-center gap-2 mb-10 sm:mb-16" style={{ transitionDelay: '0.1s' }}>
           {wines.map((w, i) => (
             <button
               key={w.id}
               onClick={() => setActiveWine(i)}
-              className={`px-6 py-3 rounded-sm text-sm transition-all duration-300 ${
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-sm text-xs sm:text-sm transition-all duration-300 ${
                 i === activeWine
                   ? 'bg-gold-500 text-white'
                   : 'bg-white/5 text-white/70 hover:bg-white/10 border border-white/10'
@@ -87,11 +87,11 @@ export function WineShowcase() {
           <div className="slide-in-left lg:col-span-2 order-2 lg:order-1">
             {/* Year + Name */}
             <div className="mb-8">
-              <div className="flex items-baseline gap-4 mb-3">
-                <span className="font-serif text-6xl lg:text-7xl text-gold-500/30 leading-none">{wine.year}</span>
+              <div className="flex items-baseline gap-3 sm:gap-4 mb-3 flex-wrap">
+                <span className="font-serif text-5xl sm:text-6xl lg:text-7xl text-gold-500/30 leading-none">{wine.year}</span>
                 <div>
                   <h2 className="font-serif text-h3 text-white leading-tight">{wine.name}</h2>
-                  <span className="font-script text-xl text-gold-400">{wine.subtitle}</span>
+                  <span className="font-script text-lg sm:text-xl text-gold-400">{wine.subtitle}</span>
                 </div>
               </div>
               <div className="w-16 h-px bg-gold-500 mt-4" />
@@ -102,19 +102,19 @@ export function WineShowcase() {
             <p className="text-white/65 leading-relaxed text-sm mb-8">{wine.tastingNotes}</p>
 
             {/* Tasting Notes */}
-            <div className="flex gap-6 mb-8">
+            <div className="flex flex-wrap gap-4 sm:gap-6 mb-8">
               <div>
-                <div className="font-serif text-2xl text-gold-500">{wine.alcohol}</div>
+                <div className="font-serif text-xl sm:text-2xl text-gold-500">{wine.alcohol}</div>
                 <div className="text-[11px] text-white/50 uppercase tracking-wider mt-1"></div>
               </div>
               <div className="w-px bg-white/10" />
               <div>
-                <div className="font-serif text-2xl text-gold-500">{wine.temperature}</div>
+                <div className="font-serif text-xl sm:text-2xl text-gold-500">{wine.temperature}</div>
                 <div className="text-[11px] text-white/50 uppercase tracking-wider mt-1"></div>
               </div>
               <div className="w-px bg-white/10" />
               <div>
-                <div className="font-serif text-2xl text-gold-500">{wine.aging}</div>
+                <div className="font-serif text-xl sm:text-2xl text-gold-500">{wine.aging}</div>
                 <div className="text-[11px] text-white/50 uppercase tracking-wider mt-1"></div>
               </div>
             </div>
@@ -135,7 +135,7 @@ export function WineShowcase() {
 
           {/* Center: Wine Bottle */}
           <div className="lg:col-span-1 order-1 lg:order-2 flex justify-center">
-            <div className="relative" style={{ width: '220px', height: '520px' }}>
+            <div className="relative w-[180px] h-[420px] sm:w-[220px] sm:h-[520px]">
               {/* Glow */}
               <div className={`absolute inset-0 flex items-center justify-center pointer-events-none`}>
                 <div className={`w-48 h-48 ${wine.glowColor} rounded-full blur-3xl transition-colors duration-700`} />

@@ -17,7 +17,7 @@ export function News() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0.05, rootMargin: '0px' }
     );
 
     const elements = sectionRef.current?.querySelectorAll('.fade-up, .slide-in-left, .slide-in-right, .scale-in');
@@ -134,11 +134,11 @@ export function News() {
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {newsConfig.testimonials.map((t, index) => (
                 <div
                   key={t.name}
-                  className="scale-in p-8 bg-white/5 rounded-lg border border-white/10 relative"
+                  className="scale-in p-6 sm:p-8 bg-white/5 rounded-lg border border-white/10 relative"
                   style={{ transitionDelay: `${0.1 + index * 0.1}s` }}
                 >
                   <Quote className="w-8 h-8 text-gold-500/30 absolute top-6 right-6" />
@@ -182,11 +182,11 @@ export function News() {
 
                 {/* Timeline Highlights */}
                 {newsConfig.storyTimeline.length > 0 && (
-                  <div className="mt-8 grid grid-cols-3 gap-4">
+                  <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-4">
                     {newsConfig.storyTimeline.map((item, index) => (
-                      <div key={index} className="text-center p-4 bg-white/5 rounded-lg border border-white/10">
-                        <div className="font-serif text-2xl text-gold-500 mb-1">{item.value}</div>
-                        <div className="text-xs text-white/60">{item.label}</div>
+                      <div key={index} className="text-center p-3 sm:p-4 bg-white/5 rounded-lg border border-white/10">
+                        <div className="font-serif text-xl sm:text-2xl text-gold-500 mb-1">{item.value}</div>
+                        <div className="text-[11px] sm:text-xs text-white/60">{item.label}</div>
                       </div>
                     ))}
                   </div>
@@ -195,7 +195,7 @@ export function News() {
 
               {/* Image */}
               <div className="slide-in-right relative">
-                <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
+                <div className="relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[4/3] lg:aspect-[4/5] max-h-[520px] lg:max-h-none rounded-lg overflow-hidden bg-wine-700">
                   {newsConfig.storyImage && (
                     <>
                       <img
@@ -211,7 +211,7 @@ export function News() {
 
                 {/* Quote Overlay */}
                 {newsConfig.storyQuote.text && (
-                  <div className="absolute bottom-6 left-6 right-6 p-6 bg-black/60 backdrop-blur-sm rounded-lg">
+                  <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 p-4 sm:p-6 bg-black/60 backdrop-blur-sm rounded-lg">
                     {newsConfig.storyQuote.prefix && (
                       <p className="font-script text-2xl text-gold-400 mb-1">{newsConfig.storyQuote.prefix}</p>
                     )}

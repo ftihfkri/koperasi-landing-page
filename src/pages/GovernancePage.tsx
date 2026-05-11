@@ -76,8 +76,8 @@ export function GovernancePage() {
   return (
     <div ref={sectionRef} className="min-h-screen bg-[#0c1a0f]">
       {/* Header */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-wine-800/95 backdrop-blur-md py-4">
-        <div className="container-custom flex items-center gap-4">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-wine-800/95 backdrop-blur-md py-3 sm:py-4">
+        <div className="container-custom flex items-center gap-3 sm:gap-4">
           <button
             onClick={goBack}
             className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition-colors"
@@ -100,11 +100,11 @@ export function GovernancePage() {
             <span className="text-gold-500 text-xs uppercase tracking-[0.2em] mb-4 block">
               DEMOCRATIC GOVERNANCE
             </span>
-            <h1 className="font-serif text-4xl md:text-5xl text-white mb-6">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white mb-6">
               How We Are Governed
             </h1>
-            <p className="text-white/70 text-lg leading-relaxed">
-              Koperasi Sabah Softwoods operates under democratic principles where members 
+            <p className="text-white/70 text-base sm:text-lg leading-relaxed">
+              Koperasi Kakitangan Sabah Softwoods Berhad operates under democratic principles where members
               have equal say in decision-making. Our governance structure ensures transparency, 
               accountability, and member-centric management.
             </p>
@@ -116,7 +116,7 @@ export function GovernancePage() {
       <section className="py-16 section-padding">
         <div className="container-custom">
           <div className="fade-up text-center mb-12">
-            <h2 className="font-serif text-3xl text-white mb-4">Governance Framework</h2>
+            <h2 className="font-serif text-2xl sm:text-3xl text-white mb-4">Governance Framework</h2>
             <p className="text-white/60 max-w-2xl mx-auto">
               Our cooperative is built on six pillars of good governance
             </p>
@@ -144,7 +144,7 @@ export function GovernancePage() {
       <section className="py-16 section-padding bg-wine-900/30">
         <div className="container-custom">
           <div className="fade-up text-center mb-12">
-            <h2 className="font-serif text-3xl text-white mb-4">Our Committees</h2>
+            <h2 className="font-serif text-2xl sm:text-3xl text-white mb-4">Our Committees</h2>
             <p className="text-white/60 max-w-2xl mx-auto">
               Specialized committees handle different aspects of cooperative operations
             </p>
@@ -179,7 +179,7 @@ export function GovernancePage() {
               <span className="text-gold-500 text-xs uppercase tracking-[0.2em] mb-4 block">
                 ANNUAL GENERAL MEETING
               </span>
-              <h2 className="font-serif text-3xl text-white mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl text-white mb-6">
                 Member Participation
               </h2>
               <p className="text-white/70 mb-6 leading-relaxed">
@@ -201,24 +201,24 @@ export function GovernancePage() {
                 ))}
               </ul>
             </div>
-            <div className="fade-up bg-white/5 border border-white/10 rounded-lg p-8">
+            <div className="fade-up bg-white/5 border border-white/10 rounded-lg p-6 sm:p-8">
               <h3 className="font-serif text-xl text-white mb-6">2025 AGM Details</h3>
               <div className="space-y-4">
-                <div className="flex justify-between">
-                  <span className="text-white/60">Date</span>
-                  <span className="text-white">June 14, 2025</span>
+                <div className="flex justify-between gap-4">
+                  <span className="text-white/60 flex-shrink-0">Date</span>
+                  <span className="text-white text-right">June 14, 2025</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-white/60">Time</span>
-                  <span className="text-white">7:30 AM</span>
+                <div className="flex justify-between gap-4">
+                  <span className="text-white/60 flex-shrink-0">Time</span>
+                  <span className="text-white text-right">7:30 AM</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-white/60">Venue</span>
+                <div className="flex justify-between gap-4">
+                  <span className="text-white/60 flex-shrink-0">Venue</span>
                   <span className="text-white text-right">2nd Floor Banquet Hall, Fajar Club</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-white/60">Dress Code</span>
-                  <span className="text-white">Proper Attire</span>
+                <div className="flex justify-between gap-4">
+                  <span className="text-white/60 flex-shrink-0">Dress Code</span>
+                  <span className="text-white text-right">Proper Attire</span>
                 </div>
                 <div className="pt-4 border-t border-white/10">
                   <p className="text-gold-400 text-sm">
@@ -235,7 +235,7 @@ export function GovernancePage() {
       <section className="py-16 section-padding bg-wine-900/30">
         <div className="container-custom">
           <div className="fade-up text-center mb-12">
-            <h2 className="font-serif text-3xl text-white mb-4">Governance Documents</h2>
+            <h2 className="font-serif text-2xl sm:text-3xl text-white mb-4">Governance Documents</h2>
             <p className="text-white/60 max-w-2xl mx-auto">
               Access our key governance and regulatory documents
             </p>
@@ -268,7 +268,7 @@ export function GovernancePage() {
       <footer className="py-8 border-t border-white/10">
         <div className="container-custom text-center">
           <p className="text-white/40 text-sm">
-            © 2025 Koperasi Sabah Softwoods. Registered under Cooperative Societies Act 1993.
+            © 2025 Koperasi Kakitangan Sabah Softwoods Berhad. Registered under Cooperative Societies Act 1993.
           </p>
         </div>
       </footer>

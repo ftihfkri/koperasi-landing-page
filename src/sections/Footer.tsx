@@ -1,11 +1,34 @@
 import { useState } from 'react';
-import { TreePine, MapPin, Phone, Mail, Instagram, Facebook, Twitter, Youtube, ArrowUp, CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Youtube, ArrowUp, CheckCircle } from 'lucide-react';
 import { footerConfig } from '../config';
 
 // Icon lookup map for dynamic icon resolution from config strings
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  TreePine, MapPin, Phone, Mail, Instagram, Facebook, Twitter, Youtube, ArrowUp,
+  MapPin, Phone, Mail, Instagram, Facebook, Twitter, Youtube, ArrowUp,
 };
+
+function renderFooterLink(link: { name: string; href: string }, scrollToSection: (href: string) => void) {
+  const className = "text-white/70 text-sm hover:text-gold-400 transition-colors text-left";
+  if (link.href.startsWith('#')) {
+    return (
+      <button onClick={() => scrollToSection(link.href)} className={className}>
+        {link.name}
+      </button>
+    );
+  }
+  const isPdf = link.href.toLowerCase().endsWith('.pdf');
+  const isExternal = /^(https?:)?\/\//.test(link.href);
+  return (
+    <a
+      href={link.href}
+      {...(isPdf ? { download: true } : {})}
+      {...(isPdf || isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      className={className}
+    >
+      {link.name}
+    </a>
+  );
+}
 
 export function Footer() {
   // Null check: if config is empty, render nothing
@@ -54,14 +77,18 @@ export function Footer() {
   return (
     <footer className="relative border-t border-white/10" role="contentinfo">
       {/* Main Footer */}
-      <div className="container-custom py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+      <div className="container-custom py-12 sm:py-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <TreePine className="w-8 h-8 text-gold-500" aria-hidden="true" />
-              <div>
-                <span className="font-serif text-xl text-white block">{footerConfig.brandName}</span>
+              <img
+                src="/logo-kopssb.jpeg"
+                alt="KOP-SSB"
+                className="h-10 w-auto flex-shrink-0"
+              />
+              <div className="min-w-0">
+                <span className="font-serif text-base sm:text-lg text-white block leading-tight">{footerConfig.brandName}</span>
                 {footerConfig.tagline && (
                   <span className="text-[10px] text-gold-400 tracking-widest uppercase">{footerConfig.tagline}</span>
                 )}
@@ -78,11 +105,13 @@ export function Footer() {
                 <div className="flex gap-3">
                   {footerConfig.socialLinks.map((social) => {
                     const IconComponent = iconMap[social.icon];
+                    const isExternal = /^(https?:)?\/\//.test(social.href);
                     return (
                       <a
                         key={social.label}
                         href={social.href}
                         aria-label={social.label}
+                        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                         className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-gold-500 hover:border-gold-500 hover:text-white transition-all duration-300"
                       >
                         {IconComponent && <IconComponent className="w-4 h-4" />}
@@ -101,12 +130,7 @@ export function Footer() {
               <ul className="space-y-3">
                 {group.links.map((link) => (
                   <li key={link.name}>
-                    <button
-                      onClick={() => scrollToSection(link.href)}
-                      className="text-white/70 text-sm hover:text-gold-400 transition-colors"
-                    >
-                      {link.name}
-                    </button>
+                    {renderFooterLink(link, scrollToSection)}
                   </li>
                 ))}
               </ul>
@@ -117,7 +141,7 @@ export function Footer() {
           <div>
             {footerConfig.contactItems.length > 0 && (
               <>
-                <h3 className="font-serif text-lg text-white mb-5">{footerConfig.linkGroups.length > 0 ? footerConfig.linkGroups[footerConfig.linkGroups.length - 1]?.title : ''}</h3>
+                <h3 className="font-serif text-lg text-white mb-5">Contact</h3>
                 <ul className="space-y-4">
                   {footerConfig.contactItems.map((item, index) => {
                     const IconComponent = iconMap[item.icon];
@@ -142,7 +166,7 @@ export function Footer() {
                     <span>{footerConfig.newsletterSuccessText}</span>
                   </div>
                 ) : (
-                  <form onSubmit={handleNewsletter} className="flex gap-2">
+                  <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row gap-2">
                     <label htmlFor="newsletter-email" className="sr-only">{footerConfig.newsletterLabel}</label>
                     <input
                       id="newsletter-email"
@@ -152,7 +176,7 @@ export function Footer() {
                       placeholder={footerConfig.newsletterPlaceholder}
                       required
                       autoComplete="email"
-                      className="flex-1 px-3 py-2 bg-white/5 border border-white/20 rounded-sm text-white text-sm placeholder-white/40 focus:outline-none focus:border-gold-500 transition-colors"
+                      className="min-w-0 flex-1 px-3 py-2 bg-white/5 border border-white/20 rounded-sm text-white text-sm placeholder-white/40 focus:outline-none focus:border-gold-500 transition-colors"
                     />
                     <button
                       type="submit"

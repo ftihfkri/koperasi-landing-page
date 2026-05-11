@@ -49,8 +49,8 @@ export interface NavigationConfig {
 }
 
 export const navigationConfig: NavigationConfig = {
-  brandName: "Koperasi Kakitangan Sabah Softwoods",
-  brandSubname: "Berhad",
+  brandName: "Koperasi Kakitangan Sabah Softwoods Berhad",
+  brandSubname: "",
   tagline: "Employee Cooperative Since 2012",
   navLinks: [
     {
@@ -102,7 +102,7 @@ export interface PreloaderConfig {
 }
 
 export const preloaderConfig: PreloaderConfig = {
-  brandName: "Koperasi Kakitangan Sabah softwoods",
+  brandName: "Koperasi Kakitangan Sabah Softwoods",
   brandSubname: "Berhad",
   yearText: "Est. 2012",
 };
@@ -276,7 +276,7 @@ export const wineShowcaseConfig: WineShowcaseConfig = {
   ],
   quote: {
     text: "To Improve the Economic Level of Cooperative Members Through the Mobilization of Available Resources.",
-    attribution: "Koperasi Kakitangan Sabah softwoods Vision",
+    attribution: "Koperasi Kakitangan Sabah Softwoods Berhad Vision",
     prefix: "Our Vision",
   },
 };
@@ -389,10 +389,10 @@ export const museumConfig: AboutConfig = {
   scriptText: "Our Cooperative",
   subtitle: "GOVERNANCE & STRUCTURE",
   mainTitle: "The Koperasi Story",
-  introText: "Founded in 2012, Koperasi Sabah softwoods has grown from a small staff group into a thriving employee cooperative with over 500 members and more than RM 1,400,000 in assets under management.",
+  introText: "Founded in 2012, Koperasi Kakitangan Sabah Softwoods Berhad has grown from a small staff group into a thriving employee cooperative with over 500 members and more than RM 1,400,000 in assets under management.",
   timeline: [
-    { year: "2012", event: "Koperasi Sabah softwoods established" },
-    { year: "2017", event: "The cooperative’s name has been changed to Koperasi Kakitangan Sabah softwoods Berhad (KOP-SSB)." },
+    { year: "2012", event: "Koperasi Kakitangan Sabah Softwoods Berhad established" },
+    { year: "2017", event: "The cooperative’s name has been changed to Koperasi Kakitangan Sabah Softwoods Berhad (KOP-SSB)." },
     { year: "2022", event: "Inaugural PCS kiosk operation" },
     { year: "2025", event: "Achieving active member more than 500+" },
     { year: "2026", event: "Assets more than RM 1,400,000" },
@@ -438,7 +438,7 @@ export const museumConfig: AboutConfig = {
   quote: {
     prefix: "Our Mission",
     text: "To Provide Efficient Services and Quality Products in Line with the Philosophy and Principles of Cooperatives.",
-    attribution: "Koperasi Kakitangan Sabah Softwoods Mission",
+    attribution: "Koperasi Kakitangan Sabah Softwoods Berhad Mission",
   },
   founderPhotoAlt: "Cooperative members at Annual General Meeting",
   founderPhoto: "/images/agm-meeting.jpg",
@@ -528,7 +528,7 @@ export const newsConfig: NewsConfig = {
   storySubtitle: "BUILDING WEALTH TOGETHER",
   storyTitle: "14 Years of Member Success",
   storyParagraphs: [
-    "Since 2012, Koperasi Sabah Softwoods has been the trusted investment partner for employees of Sabah Softwoods Berhad. What started as a small savings group has evolved into a thriving cooperative managing over RM 1,400,000 in member assets.",
+    "Since 2012, Koperasi Kakitangan Sabah Softwoods Berhad has been the trusted investment partner for employees of Sabah Softwoods Berhad. What started as a small savings group has evolved into a thriving cooperative managing over RM 1,400,000 in member assets.",
     "Our success is measured not just in financial returns, but in the real impact on members' lives - homes built, children educated, emergencies managed, and retirements secured. Together, we continue to grow stronger.",
   ],
   storyTimeline: [
@@ -540,7 +540,7 @@ export const newsConfig: NewsConfig = {
   storyQuote: {
     prefix: "Our Objective",
     text: "To Provide Facilities and Safeguard the Welfare of Cooperative Members Through the Implementation of Profitable Activities.",
-    attribution: "Koperasi Kakitangan Sabah Softwoods Objective",
+    attribution: "Koperasi Kakitangan Sabah Softwoods Berhad Objective",
   },
   storyImage: "/images/member-gathering.jpeg",
   storyImageCaption: "Members celebrating at the 10th Anniversary dinner",
@@ -684,13 +684,11 @@ export interface FooterConfig {
 }
 
 export const footerConfig: FooterConfig = {
-  brandName: "Koperasi Sabah Softwoods",
+  brandName: "Koperasi Kakitangan Sabah Softwoods Berhad",
   tagline: "Employee Cooperative Since 2012",
   description: "An employee cooperative empowering staff of Sabah Softwoods Berhad through collective investment, annual dividends, and comprehensive member benefits.",
   socialLinks: [
-    { icon: "Facebook", label: "Facebook", href: "#" },
-    { icon: "Instagram", label: "Instagram", href: "#" },
-    { icon: "Twitter", label: "Twitter", href: "#" },
+    { icon: "Facebook", label: "Facebook", href: "https://www.facebook.com/share/1FUsNLV8NB/?mibextid=wwXIfr" },
   ],
   linkGroups: [
     {
@@ -705,8 +703,8 @@ export const footerConfig: FooterConfig = {
     {
       title: "Member Services",
       links: [
-        { name: "Annual Reports", href: "#" },
-        { name: "Member Portal", href: "#" },
+        { name: "Annual Reports", href: "/documents/annual_report_2024.pdf" },
+        { name: "Member Login", href: "http://localhost/koperasi-kakitangan/public/login" },
       ],
     },
   ],
@@ -721,7 +719,7 @@ export const footerConfig: FooterConfig = {
   newsletterSuccessText: "Thank you for subscribing!",
   newsletterErrorText: "Please try again.",
   newsletterEndpoint: "https://formspree.io/f/YOUR_NEWSLETTER_ID",
-  copyrightText: "© 2026 Koperasi Sabah Softwoods. All rights reserved.",
+  copyrightText: "Koperasi Kakitangan Sabah Softwoods Berhad. All rights reserved.",
   legalLinks: ["Privacy Policy", "Terms of Use", "Cooperative Act"],
   icpText: "Registered under Cooperative Societies Act 1993",
   backToTopText: "Back to top",

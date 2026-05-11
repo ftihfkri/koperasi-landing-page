@@ -32,7 +32,7 @@ export function ContactForm() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0.05, rootMargin: '0px' }
     );
 
     const elements = sectionRef.current?.querySelectorAll('.fade-up, .slide-in-left, .slide-in-right');
@@ -113,7 +113,7 @@ export function ContactForm() {
           )}
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
+        <div className="grid lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16">
           {/* Contact Info */}
           <div className="lg:col-span-2 space-y-6">
             <div className="slide-in-left" style={{ transitionDelay: '0.1s' }}>
@@ -146,7 +146,7 @@ export function ContactForm() {
 
           {/* Form */}
           <div className="lg:col-span-3">
-            <div className="slide-in-right bg-white/5 rounded-lg border border-white/10 p-8" style={{ transitionDelay: '0.15s' }}>
+            <div className="slide-in-right bg-white/5 rounded-lg border border-white/10 p-5 sm:p-8" style={{ transitionDelay: '0.15s' }}>
               {status === 'success' ? (
                 <div className="text-center py-12" role="alert">
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
@@ -162,8 +162,8 @@ export function ContactForm() {
                   </h3>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                  <div className="grid md:grid-cols-2 gap-6">
+                <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6" noValidate>
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                     {/* Name */}
                     <div>
                       <label htmlFor="contact-name" className="block text-sm text-white/80 mb-2">
