@@ -642,7 +642,9 @@ export const contactFormConfig: ContactFormConfig = {
     errorMessage: "Something went wrong. Please try again or contact us directly.",
   },
   privacyNotice: "By submitting this form, you agree to our privacy policy. Your information will only be used to respond to your inquiry.",
-  formEndpoint: "https://formspree.io/f/YOUR_FORM_ID",
+  // Relative path — POSTs to /contact on whatever domain serves this app.
+  // Set up the matching Laravel route to accept this form submission.
+  formEndpoint: "contact",
 };
 
 // -----------------------------------------------------------------------------
@@ -710,7 +712,7 @@ export const footerConfig: FooterConfig = {
       title: "Member Services",
       links: [
         { name: "Annual Reports", href: "/documents/annual_report_2024.pdf" },
-        { name: "Member Login", href: "http://localhost/koperasi-kakitangan/public/login" },
+        { name: "Member Login", href: "login" },
       ],
     },
   ],
@@ -724,7 +726,8 @@ export const footerConfig: FooterConfig = {
   newsletterButtonText: "Subscribe",
   newsletterSuccessText: "Thank you for subscribing!",
   newsletterErrorText: "Please try again.",
-  newsletterEndpoint: "https://formspree.io/f/YOUR_NEWSLETTER_ID",
+  // Relative path — POSTs to /newsletter on whatever domain serves this app.
+  newsletterEndpoint: "newsletter",
   copyrightText: "Koperasi Kakitangan Sabah Softwoods Berhad. All rights reserved.",
   legalLinks: ["Privacy Policy", "Terms of Use", "Cooperative Act"],
   icpText: "Registered under Cooperative Societies Act 1993",
