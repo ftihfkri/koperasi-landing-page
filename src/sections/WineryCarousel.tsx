@@ -172,12 +172,10 @@ export function WineryCarousel() {
                     {slide.description}
                   </p>
 
-                  {/* CTA */}
+                  {/* CTA — internal redirect to /login; no target/rel needed */}
                   {navigationConfig.ctaButtonText && (
                     <a
                       href={navigationConfig.ctaButtonUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="btn-dark rounded-sm inline-block w-fit"
                       aria-label={navigationConfig.ctaButtonText}
                     >

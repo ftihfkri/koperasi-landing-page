@@ -91,8 +91,11 @@ export const navigationConfig: NavigationConfig = {
     },
   ],
   ctaButtonText: "Member Login",
-  // TODO: replace with production member portal URL before deploying
-  ctaButtonUrl: "http://localhost/koperasi-kakitangan/public/login",
+  // Relative URL so it resolves against whatever page the app is rendered on.
+  // Works at the root domain (railway → /login) and at a sub-path (local
+  // Laravel: /koperasi-kakitangan/public/ → /koperasi-kakitangan/public/login).
+  // Do NOT prefix with "/" — that would break the sub-path case.
+  ctaButtonUrl: "login",
 };
 
 // -----------------------------------------------------------------------------

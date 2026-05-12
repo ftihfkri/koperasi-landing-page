@@ -235,12 +235,10 @@ export function Navigation() {
           })}
         </div>
 
-        {/* Desktop CTA */}
+        {/* Desktop CTA — internal redirect to /login on same site */}
         {navigationConfig.ctaButtonText && (
           <a
             href={navigationConfig.ctaButtonUrl}
-            target="_blank"
-            rel="noopener noreferrer"
             className="hidden lg:inline-block btn-primary rounded whitespace-nowrap"
             aria-label={navigationConfig.ctaButtonText}
           >
@@ -339,8 +337,6 @@ export function Navigation() {
             {navigationConfig.ctaButtonText && (
               <a
                 href={navigationConfig.ctaButtonUrl}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="btn-primary rounded mt-4 text-center"
               >
                 {navigationConfig.ctaButtonText}
