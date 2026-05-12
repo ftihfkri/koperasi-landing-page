@@ -153,7 +153,7 @@ export function Navigation() {
           />
           <div className="flex flex-col min-w-0 leading-tight">
             <span className="font-serif text-base sm:text-lg md:text-xl text-white tracking-wide">KOP-SSB</span>
-            <span className="hidden sm:block text-[8px] sm:text-[10px] text-gold-400 tracking-widest uppercase truncate">{navigationConfig.brandName}</span>
+            <span className="block text-[7px] xs:text-[8px] sm:text-[10px] text-gold-400 tracking-wider sm:tracking-widest uppercase truncate">{navigationConfig.brandName}</span>
           </div>
         </Link>
 
