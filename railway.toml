@@ -1,4 +1,9 @@
 [build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
 
-[build.variables]
-RAILPACK_INSTALL_CMD = "npm ci --include=dev"
+[deploy]
+startCommand = "/start.sh"
+healthcheckPath = "/login"
+healthcheckTimeout = 60
+restartPolicyType = "on_failure"
